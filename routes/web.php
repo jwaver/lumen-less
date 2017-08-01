@@ -15,4 +15,4 @@ $app->get('/', 'Controller@index');
 
 $app->get('/page/{page}', 'PageController@index');
 
-$app->get('/test', 'Controller@test');
+$app->get('/ajax/{request}', 'AjaxController@slug');

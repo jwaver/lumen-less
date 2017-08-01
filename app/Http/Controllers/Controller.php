@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Factory as Auth;
 
 class Controller extends BaseController
 {
@@ -46,20 +47,28 @@ class Controller extends BaseController
         ],
     ];
 
-    public function index()
+    public function index(Auth $auth)
     {
+        // $this->dd($auth);
         return view('home')->with('ctrl',$this);
     }
 
     public function content($content)
     {
-        $pageViews = 'contents.';
+        $pageViews = 'pages.';
         if(view()->exists($pageViews.$content))
             return view($pageViews.$content);
         elseif(view()->exists($pageViews.$content.'.index'))
             return view($pageViews.$content.'.index');
         else
             return 'No content found!';
+    }
+
+    public function dd($v)
+    {
+        print '<pre>';
+        dd($v);
+        print '</pre>';
     }
 
     public function test(Request $request)
