@@ -1,0 +1,16 @@
+.container{margin:0 auto;}
+.navbar-brand {
+    color: #ff8300!important;
+    padding: 5px;
+}
+.thumbnail{}
+.thumbnail .caption h4{
+    color: #3eadff;
+}
+.thumbnail .caption .fa{
+    font-size: 50px;
+    color: #272b30;
+}
+.thumbnail .caption {
+    text-align: center;
+}
