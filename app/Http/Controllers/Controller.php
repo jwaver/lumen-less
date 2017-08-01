@@ -53,10 +53,11 @@ class Controller extends BaseController
 
     public function content($content)
     {
-        if(view()->exists('contents.'.$content))
-            return view('contents.'.$content);
-        elseif(view()->exists('contents.'.$content.'.index'))
-            return view('contents.'.$content.'.index');
+        $pageViews = 'contents.';
+        if(view()->exists($pageViews.$content))
+            return view($pageViews.$content);
+        elseif(view()->exists($pageViews.$content.'.index'))
+            return view($pageViews.$content.'.index');
         else
             return 'No content found!';
     }
