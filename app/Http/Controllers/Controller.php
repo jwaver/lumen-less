@@ -49,7 +49,7 @@ class Controller extends BaseController
 
     public function index(Auth $auth)
     {
-        // $this->dd($auth);
+        // return view('login')->with('ctrl',$this);
         return view('home')->with('ctrl',$this);
     }
 

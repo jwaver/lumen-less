@@ -15,4 +15,5 @@ $app->get('/', 'Controller@index');
 
 $app->get('/page/{page}', 'PageController@index');
 
-$app->get('/ajax/{request}', 'AjaxController@slug');
+$app->get('/api/{name}', 'ApiController@slug');
+$app->post('/api/{name}', 'ApiController@slug');
