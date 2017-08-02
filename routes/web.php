@@ -15,5 +15,5 @@ $app->get('/', 'Controller@index');
 
 $app->get('/page/{page}', 'PageController@index');
 
-$app->get('/api/{name}', 'ApiController@slug');
-$app->post('/api/{name}', 'ApiController@slug');
+$app->get('/api/{name}/{action}', 'ApiController@slug');
+$app->post('/api/{name}/{action}', 'ApiController@slug');

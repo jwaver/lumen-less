@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use Laravel\Lumen\Routing\Controller as BaseController;
+use App\Http\Controllers\Controller;
 
-class ExplorerController extends BaseController
+class ExplorerController extends Controller
 {
 
-    public function response()
+    public function dirlist()
     {
-        return [];
+        return array_values(array_diff(scandir('./'), array('.','..')));
     }
-
 
 }

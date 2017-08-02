@@ -6,11 +6,28 @@ use Illuminate\Http\Request;
 
 class ApiController extends BaseController
 {
+    private $CtrlName   = null;
+    private $name       = null;
+    private $action     = null;
+    private $data       = null;
 
-    public function slug($name)
+    public function slug($name,$action)
     {
-        $ControllerName = "App\Http\Controllers\Api\\".ucwords($name).'Controller';
-        return app($ControllerName)->response();
+        $this->CtrlName = "App\Http\Controllers\Api\\".ucwords($name).'Controller';
+        $this->name     = $name;
+        $this->action   = $action;
+        $this->data     = app($this->CtrlName)->{$this->action}();
+
+        return $this->formatter($this->data);
+    }
+
+    public function formatter($data)
+    {
+        return response()->json([
+            'data' => $data,
+            'code' => '',
+            'message' => '',
+        ]);
     }
 
 }

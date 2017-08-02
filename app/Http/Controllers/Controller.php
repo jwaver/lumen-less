@@ -71,12 +71,4 @@ class Controller extends BaseController
         print '</pre>';
     }
 
-    public function test(Request $request)
-    {
-        dd(
-            '<pre>'.$request.'</pre>'
-        );
-    }
-
-
 }
