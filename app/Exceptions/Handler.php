@@ -1,5 +1,5 @@
 <?php
-
+#https://laracasts.com/discuss/channels/code-review/best-way-to-handle-rest-api-errors-throwed-from-controller-or-exception
 namespace App\Exceptions;
 
 use Exception;
@@ -45,6 +45,36 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        return parent::render($request, $e);
+        // if(!$request->expectsJson())
+        // return parent::render($request, $e);
+
+        switch(true) {
+            case $e instanceof ModelNotFoundException:
+                return response()->json([
+                    'message' => 'Record not found',
+                ], 404);
+            break;
+            case $e instanceof NotFoundHttpException:
+                return response()->json([
+                    'message' => 'Page not found',
+                ], 404);
+            break;
+            default:
+                $return = [
+                    "error" => [
+                        "errors" => [
+                            "file" => $e->getFile(),
+                            "line" => $e->getLine(),
+                            "exception" => (new \ReflectionClass($e))->getShortName(),
+                        ],
+                        "code" => $e->getCode(),
+                        "message" => $e->getMessage()
+                    ]
+                ];
+
+                return response()->json($return, 404);
+            break;
+        }
     }
+
 }

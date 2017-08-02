@@ -10,10 +10,7 @@ class ApiController extends BaseController
     public function slug($name)
     {
         $ControllerName = "App\Http\Controllers\Api\\".ucwords($name).'Controller';
-        if(class_exists($ControllerName))
-            return app($ControllerName)->response();
-        else
-            return null;
+        return app($ControllerName)->response();
     }
 
 }
