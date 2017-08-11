@@ -12,4 +12,11 @@ class PageController extends BaseController
         return view('pages.'.$page);
     }
 
+    public function test()
+    {
+      if(rand(1,5)==1)
+      return "Hello world";
+      return rand(1,5);
+    }
+
 }
